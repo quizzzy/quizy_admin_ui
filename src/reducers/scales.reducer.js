@@ -1,28 +1,28 @@
 import {
-  FETCH_PROFILE_PENDING,
-  FETCH_PROFILE_SUCCESS,
-  FETCH_PROFILE_ERROR
-} from "../actions/profile.action";
+  FETCH_SCALES_PENDING,
+  FETCH_SCALES_SUCCESS,
+  FETCH_SCALES_ERROR
+} from "../actions/scales.action";
 
 const initialState = {
   pending: false,
-  profiles: []
+  scales: []
 };
 
-const ProfileReducer = (state = initialState, action) => {
+const ScalesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_PROFILE_PENDING:
+    case FETCH_SCALES_PENDING:
       return {
         ...state,
         pending: true
       };
-    case FETCH_PROFILE_SUCCESS:
+    case FETCH_SCALES_SUCCESS:
       return {
         ...state,
-        profiles: action.payload,
+        scales: action.payload,
         pending: false
       };
-    case FETCH_PROFILE_ERROR:
+    case FETCH_SCALES_ERROR:
       return {
         ...state,
         pending: false,
@@ -33,4 +33,4 @@ const ProfileReducer = (state = initialState, action) => {
   }
 };
 
-export default ProfileReducer;
+export default ScalesReducer;
