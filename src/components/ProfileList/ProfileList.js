@@ -18,20 +18,9 @@ const useStyles = makeStyles({
   }
 });
 
-function createData(profileId, scale1, scale2, scale3, scale4, scale5) {
-  return { profileId, scale1, scale2, scale3, scale4, scale5 };
-}
-
-const rows = [
-  createData("5dca7d7a719e994592cc1688", 1, 3, 4, 4, 5),
-  createData("5dca7d7a719e994592cc1688", 237, 9.0, 37, 4.3, 5),
-  createData("5dca7d7a719e994592cc1688", 262, 16.0, 24, 6.0, 5),
-  createData("5dca7d7a719e994592cc1688", 305, 3.7, 67, 4.3, 5),
-  createData("5dca7d7a719e994592cc1688", 356, 16.0, 49, 3.9, 5)
-];
-
-export default function ProfileList() {
+export default function ProfileList(props) {
   const classes = useStyles();
+  const { profiles, scales } = props;
 
   return (
     <Paper className={classes.root}>
@@ -39,24 +28,28 @@ export default function ProfileList() {
         <TableHead>
           <TableRow>
             <TableCell>Profile id</TableCell>
-            <TableCell align="right">Scale name 1</TableCell>
-            <TableCell align="right">Scale name 2</TableCell>
-            <TableCell align="right">Scale name 3</TableCell>
-            <TableCell align="right">Scale name 4</TableCell>
-            <TableCell align="right">Scale name 5</TableCell>
+            {scales.map(scale => {
+              return (
+                <TableCell key={scale._id} align="right">
+                  {scale.title}
+                </TableCell>
+              );
+            })}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.profileId}>
+          {profiles.map(profile => (
+            <TableRow key={profile._id}>
               <TableCell component="th" scope="row">
-                {row.profileId}
+                {profile._id}
               </TableCell>
-              <TableCell align="right">{row.scale1}</TableCell>
-              <TableCell align="right">{row.scale2}</TableCell>
-              <TableCell align="right">{row.scale3}</TableCell>
-              <TableCell align="right">{row.scale4}</TableCell>
-              <TableCell align="right">{row.scale5}</TableCell>
+              {profile.scales.map(scale => {
+                return (
+                  <TableCell key={scale._id} align="right">
+                    {scale.value}
+                  </TableCell>
+                );
+              })}
             </TableRow>
           ))}
         </TableBody>
