@@ -1,5 +1,5 @@
-import React, { useEffect, Fragment } from "react";
-import { Redirect } from "react-router-dom";
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import { Container, Grid } from "@material-ui/core";
 import ProfileList from "../../components/ProfileList";
 import Bar from "../../components/Bar";
@@ -19,7 +19,6 @@ export default class Home extends React.Component {
       isProfileLoaded,
       isScalesLoaded
     } = this.props;
-    console.log(this.props);
     if (shouldAllowAuth) {
       return (
         <Fragment>
@@ -38,6 +37,6 @@ export default class Home extends React.Component {
         </Fragment>
       );
     }
-    return null;
+    return <Link to="/">Login</Link>;
   }
 }
