@@ -3,20 +3,24 @@ import { Redirect } from "react-router-dom";
 
 export default function withAuth(ComponentToProtect) {
     return props => {
-        const { checkToken, token, shouldAllowAuth } = props;
+        const { checkToken, token, shouldAllowAuth, shouldLogAgain } = props;
 
         useEffect(() => {
-            checkToken(token);
-        });
+            checkToken(token || JSON.parse(localStorage.getItem("token")));
+        }, [checkToken, token]);
 
-        if (!shouldAllowAuth) {
-            return <Redirect to="/login" />;
+        if (shouldLogAgain) {
+            return <Redirect to={{ pathname: "/login" }} />;
         }
 
-        return (
-            <>
-                <ComponentToProtect {...props} />
-            </>
-        );
+        if (shouldAllowAuth) {
+            return (
+                <>
+                    <ComponentToProtect {...props} />
+                </>
+            );
+        }
+
+        return null;
     };
 }

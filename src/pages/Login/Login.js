@@ -69,10 +69,6 @@ const Login = ({ fetchLogin, loginSuccess }) => {
         fetchLogin(loginData);
     };
 
-    if (loginSuccess) {
-        history.push("/profiles");
-    }
-
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
@@ -80,6 +76,10 @@ const Login = ({ fetchLogin, loginSuccess }) => {
     const handleMouseDownPassword = event => {
         event.preventDefault();
     };
+
+    if (loginSuccess) {
+        history.push("/profiles");
+    }
 
     return (
         <>
