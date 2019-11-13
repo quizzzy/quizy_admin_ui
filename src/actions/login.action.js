@@ -38,6 +38,7 @@ export function fetchLogin(loginData) {
                 if (res.status === 200) {
                     res.text().then(token => {
                         dispatch(fetchLoginSuccess(token));
+                        localStorage.setItem("token", JSON.stringify(token));
                     });
                 } else {
                     const error = new Error(res.error);
