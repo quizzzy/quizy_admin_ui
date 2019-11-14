@@ -1,7 +1,7 @@
 import React from 'react';
 import {
 	Route,
-	BrowserRouter as Router,
+	HashRouter as Router,
 	Switch,
 	Redirect,
 } from 'react-router-dom';
@@ -12,7 +12,7 @@ export default () => (
 	<Router>
 		<Switch>
 			<Route exact path="/profiles" component={Home} />
-			<Route path="/login" component={Login} />
+			<Route path="/" component={Login} />
 			<Redirect from="*" to="/profiles" />
 		</Switch>
 	</Router>
