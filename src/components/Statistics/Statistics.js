@@ -8,7 +8,8 @@ const useStyles = makeStyles({
 		width: '100%',
 		overflowX: 'auto',
 		marginTop: '20px',
-		padding: '10px 0',
+		padding: '10px 20px',
+		boxSizing: 'border-box',
 	},
 	box: {
 		display: 'flex',
@@ -73,7 +74,7 @@ function Statistics(props) {
 			{statistics.completedProfiles > 0 && (
 				<Paper className={classes.root}>
 					<Grid container direction="row" spacing={2}>
-						<Grid item xs={2}>
+						<Grid item xs={12}>
 							<StatisticsCircleItem
 								number={statistics.completedProfiles}
 								desc="Раз пройдено квіз"
