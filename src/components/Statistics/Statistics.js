@@ -69,26 +69,30 @@ function Statistics(props) {
 	}, []);
 
 	return (
-		<Paper className={classes.root}>
-			<Grid container direction="row" spacing={2}>
-				<Grid item xs={2}>
-					<StatisticsCircleItem
-						number={statistics.completedProfiles}
-						desc="Раз пройдено квіз"
-					/>
-				</Grid>
-				{statistics.scales.map(stat => {
-					return (
-						<Grid item xs={2} key={stat.title}>
+		<>
+			{statistics.completedProfiles > 0 && (
+				<Paper className={classes.root}>
+					<Grid container direction="row" spacing={2}>
+						<Grid item xs={2}>
 							<StatisticsCircleItem
-								number={stat.value}
-								desc={`Середнє значення для категорії: ${stat.title}`}
+								number={statistics.completedProfiles}
+								desc="Раз пройдено квіз"
 							/>
 						</Grid>
-					);
-				})}
-			</Grid>
-		</Paper>
+						{statistics.scales.map(stat => {
+							return (
+								<Grid item xs={2} key={stat.title}>
+									<StatisticsCircleItem
+										number={stat.value}
+										desc={`Середнє значення для категорії: ${stat.title}`}
+									/>
+								</Grid>
+							);
+						})}
+					</Grid>
+				</Paper>
+			)}
+		</>
 	);
 }
 
