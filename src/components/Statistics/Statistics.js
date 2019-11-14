@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function StatisticsCircleItem(props) {
+function StatisticsItem(props) {
 	const classes = useStyles();
 
 	return (
@@ -75,15 +75,15 @@ function Statistics(props) {
 				<Paper className={classes.root}>
 					<Grid container direction="row" spacing={2}>
 						<Grid item xs={12}>
-							<StatisticsCircleItem
+							<StatisticsItem
 								number={statistics.completedProfiles}
 								desc="Раз пройдено квіз"
 							/>
 						</Grid>
 						{statistics.scales.map(stat => {
 							return (
-								<Grid item xs={2} key={stat.title}>
-									<StatisticsCircleItem
+								<Grid item xs={12} md={2} key={stat.title}>
+									<StatisticsItem
 										number={stat.value}
 										desc={`Середнє значення для категорії: ${stat.title}`}
 									/>
